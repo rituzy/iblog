@@ -1,5 +1,5 @@
 <h2 class="new-duty">
-    {{ trans('messages.Add').' '.trans('messages.New').' '.Lang::choice('messages.Duties', 1); }}
+    {{ trans('messages.Add').' '.Lang::choice('messages.Duties', 1); }}
     <span class="right">{{ HTML::link('admin/dash-board',trans('messages.Cancel'),['class' => 'button tiny radius']) }}</span>
 </h2>
 <hr>

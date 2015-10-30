@@ -18,7 +18,7 @@
 </div>
 <div class="row">
     <div class="small-7 large-7 column">
-        {{ Form::label('comment', Lang::choice('messages.Comments', 1).':' }}
+        {{ Form::label('comment', Lang::choice('messages.Comments', 1).':' )}}
         {{ Form::textarea('comment',Input::old('comment'),['rows'=>5]) }}
     </div>
 </div>

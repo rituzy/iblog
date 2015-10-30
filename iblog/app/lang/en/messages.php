@@ -64,6 +64,7 @@ return [
   'New'          => 'New',
   'List'         => 'List',  
   'Posts'        => 'Post|Posts',
+  'Duties'       => 'Duty|Duties',
   'Photos'       => 'Photo|Photos',
   'Comments'     => 'Comment|Comments',
   'Users'        => 'User|Users',
