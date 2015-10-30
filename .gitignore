@@ -1,0 +1,13 @@
+iblog/bootstrap/compiled.php
+iblog/vendor
+iblog/composer.phar
+iblog/composer.lock
+iblog/.env.*.php
+iblog/.env.php
+iblog/.DS_Store
+iblog/Thumbs.db
+iblog/public/img/pncpictures
+iblog/app/storage/photos/*.*
+iblog/app/config/*.*
+iblog/dump.sql
+

@@ -1,0 +1,54 @@
+<html>
+<head>
+<style>
+div.background {
+    background: url(img/bnd_grep.jpg) repeat;
+    border: 2px solid black;
+}
+
+div.transbox {
+    margin: 30px;
+    background-color: #ffffff;
+    border: 1px solid black;
+    opacity: 0.92;
+    filter: alpha(opacity=60); /* For IE8 and earlier */	
+}
+
+div.transbox p {    
+    margin: 5%;
+    font-weight: bold;
+    color: #000000;	
+} 
+
+</style>
+</head>
+<body>
+
+<div class="background">
+  <div class="transbox">    
+	<a href="http://www.izutov.com/">Back to the blog</a>
+	<h2>Grep tool for Windows.</h2>
+     Some time before I had to find some strings in logs. If we talk about Windows there are some apps to help us with this task: TotalCommander's lister or Notepad++. But what if you want to have all the necessary strings and only them? Of cause you can install unixtools and use grep command or Windows' findstr from cmd. I wanted to create something useful after I had read <a href="http://www.amazon.com/Java-Beginners-Guide-Herbert-Schildt/dp/0071809252/ref=asap_bc?ie=UTF8">thick Java book of Herbert Schildt </a> as an exercise. In the end I had a small app which finds strings containing search string in the file of all files in the folder. Project has beed created in NetBeans.</br>
+    <b>Important points: </b>
+    <ul>
+		<li> I developed a multithread version but after tests on different machines left it as is
+	</ul>
+	<b>Features:</b>
+	<ul>
+		<li> find both Russian and Englis strings </li>
+		<li> is able to find in the file or in all files of the folder </li>
+		<li> is able to find regular expressions </li>
+	</ul>
+
+<b>Screenshot:</b></br>
+<img src="img/grep_example.jpg"></img>
+</br></br>
+<a href="https://github.com/rituzy/GrepGUI">Project on github</a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+</body>
+</html>

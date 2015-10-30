@@ -1,0 +1,55 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+div.background {
+    background: url(img/bnd_grep.jpg) repeat;
+    border: 2px solid black;
+}
+
+div.transbox {
+    margin: 30px;
+    background-color: #ffffff;
+    border: 1px solid black;
+    opacity: 0.92;
+    filter: alpha(opacity=60); /* For IE8 and earlier */	
+}
+
+div.transbox p {    
+    margin: 5%;
+    font-weight: bold;
+    color: #000000;	
+} 
+
+</style>
+</head>
+<body>
+
+<div class="background">
+  <div class="transbox">    
+	<a href="http://www.izutov.com/">Вернуться в блог</a>
+	<h2>GUI грепалка для Windows.</h2>
+     Несколько раз уже возникала необходимость по работе грепать логи, причем с кирилицей. В Windows есть уже примерно похожие вещи: листер TotalCommander'а или Notepad++. Однако, хочется видеть только все нужные строки в результате поиска. Здесь поможет установка unixtools(можем использовать старый добрый grep) или использование findstr из командной строки(что-то надо доставить дополнительно, чтобы доступна была команда) Мне ж захотелось в рамках упражнения после прочтения <a href="http://www.amazon.com/Java-Beginners-Guide-Herbert-Schildt/dp/0071809252/ref=asap_bc?ie=UTF8">талмуда по Java Шилдта </a>
+    совместить приятное с полезным. В итоге получилась скромная програмка, которая ищет вхождение искомой строки в файлах содержащих текст, на который укажут(или во всех файлах в директории). Проект сделан в NetBeans.</br>
+    <b>Особенности: </b>
+    <ul>
+		<li>  была у меня версия с использованием многопоточности, но после экспериментов вернул однопоточную версию</li>
+	</ul>
+	<b>Фишки:</b>
+	<ul>
+		<li> ищет как русские так и английские строки</li>
+		<li> может делать обход по всем файлам в папке </li>
+		<li> можно искать регулярное выражение </li>
+	</ul>
+
+<b>Скриншот:</b></br>
+<img src="img/grep_example.jpg"></img>
+</br></br>
+<a href="https://github.com/rituzy/GrepGUI">Проект на github</a>
+
+    </div>
+</div>
+
+</body>
+</html>
+

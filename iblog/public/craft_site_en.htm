@@ -1,0 +1,76 @@
+<html>
+<head>
+<style>
+div.background {
+    background: url(img/bnd_site.jpg) repeat;
+    border: 2px solid black;
+}
+
+div.transbox {
+    margin: 30px;
+    background-color: #ffffff;
+    border: 1px solid black;
+    opacity: 0.93;
+    filter: alpha(opacity=60); /* For IE8 and earlier */	
+}
+
+div.transbox p {    
+    margin: 5%;
+    font-weight: bold;
+    color: #000000;	
+} 
+
+</style>
+</head>
+<body>
+
+<div class="background">
+  <div class="transbox">    
+	<a href="http://www.izutov.com/">Back to the blog</a>
+	<h2>My way to laravel.</h2>
+<div class>The story begins with my desire to create my web blog (there were no any commercial purposes) But in order to make it useful for me I decided to create this site using any famous MVC framework. Since Java Stack is of my interest I began from simple framework which was new, powerful and had many interesting features. It was <a  
+href="https://www.playframework.com/">Play!</a> Framework appeared to be simple for learning(only at the beginning) with dynamic scaffolding, UT, etc. But the truth is that you cannot create any serious application with java project and most of examples are scala projects. Thus java support in this framework is a teaser. All big projects should be created with scala(it's much more strict than say groovy) projects
+Scala. Community is not so big and answers for some questions you might not find on first reference in google search results. To be faire too many things left not clear. Good article about it you may find <a  
+href="http://habrahabr.ru/post/173211/">here</a>. One of the main conclusions from the article <i>To use Play  
+2.1 a fully you need to know Scala.</i> </br>
+After several trials I left it and started with <a href="https://grails.org/">Grails</a>. Grails is emerged from
+Spring and as Play! created for rapid development (dynamic scaffolding, creating controllers, models and views by only one command
+, unit/integration/functional tests and so on) I even found a good learning book <a  
+href="https://www.manning.com/books/grails-in-action">Grails in Action</a>. After beginning with the book's example (the first one <a href="https://github.com/rituzy/qotd">is available from git</a>) I faced with the not working things. The problem was with the difference of versions: at the time of writing the book there was older version of framework. And plugins used in the example where not compatible with the new version. In order to avoid this you may have to dig into the core of engine and revise it manually. There were too many questions on the support page of the book. Finally I stopped reading the book and left this example. Moreover community of the framework has titen dramatically. Btw grails is very-very slow(especially under Windows)</br>
+Chasing Java I could check out<a href="http://spring.io/">Spring</a>  or other frameworks which use other programming language: Python(<a href="https://www.djangoproject.com/">Django</a>) or PHP(<a  
+href="http://laravel.com/">Laravel</a>). Spring is too heavy as you need to read much more to create any app. As PHP is a template language intended to web I chose it i.e. Laravel.
+<h2>Laravel.</h2>
+Big russian <a href="https://laravel.ru/">community</a>, PHP is very simple and all documentation is available online. The framework is simple, there are answers on most of questions about the framework, debugging is very friendly. One can adjust unit testing here, support of connections to all famous databases(you may work without web server as laravel has it's own build in web server for developing) You will not receive dynamic scaffolding (it's not so necessary) Very convenient process of error reporting, googlable. There are many books about Laravel (do not read the ones about older versions )
+<h2>The Blog.</h2>
+It was faster to create this blog engine with laravel than my first two trials with Grails and Play!. One can install laravel 4.1, pull the files from my repository, adjust config file and DB connection. Then by putting one command create the whole structure in database and you are welcome to enjoy your own blog(you may have to install webserver and adjust it or just type "php artisan server" from app folder) On the very beginning I used small engine from <a href="http://www.codeheaps.com/php-programming/creating-blog-using-laravel-4-part-1/">here</a> ...and then it grew into present version with many intersting things.</br>
+<b>Important points: </b>
+<ul>
+<li> it is needs to meet laravel requirements (PHP version 5 or higher) </li>
+<li> now official version is 5 but this engine is of 4.1 (on starting with this site 4 was a stable version) Upgrade to 5 will take some time and patience from you(maybe more than some) but it is possible</li>
+<li> 2 dependencies are used here: picture loading and capcha</li>
+<li> you will need to create administrator role by hands in you database</li>
+<li> web pages about crafts are created as static htm pages (simple way to use only html+css )</li>
+<li> Ajax where not used except 2 things</li>
+</ul>
+<b>Features:</b>
+<ul>
+<li> the engine supports recursive creating of comments on comments as in LiveJournal</li>
+<li> the engine supports registration through VKontakte</li>
+<li> photos are in the private directory and it case of request to watch it the photo is copied to temp folder. It's not allowed to copy a bunch of photos</li>
+<li> polymorphic relations are in use with Tags and other models.</li>
+<li> English and Russian language support</li>
+<li> soft deleting used</li>
+<li> text search is available on both languages </li>
+</ul>
+
+<b>Models of the site:</b></br>
+<img src="img/model.png"></img>
+</br>
+There are some open points in TODO list, but for now it is time to start and then go on :)</br>
+<a href="https://github.com/rituzy/iblog">Project in git</a>
+
+  </div>
+</div>
+
+</body>
+</html>
