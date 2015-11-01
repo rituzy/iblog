@@ -129,6 +129,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         return $this->hasMany('Worker');
     }
 
+    public function todo()
+    {
+        return $this->hasMany('Todo');
+    }
+
+    public function todoAuthor()
+    {
+        return $this->hasMany('Todo');
+    }
+
     public static function getUserOptions()
     {
         return User::orderBy('id','desc')->lists('username','id');

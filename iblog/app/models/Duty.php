@@ -38,15 +38,14 @@ class Duty extends Eloquent
       $year  = date("Y");
       $month = date("m");
       $day   = date("d");
-
+      $yearBefore = $year;
+      
       $month += 4;
 
       if ($month > 12){ 
-        $month -= 12;
-        $yearBefore = $year--;        
+        $month -= 12;        
+        $year++;    
       }
-      else 
-        $yearBefore = $year;
       
       $monthBegin = $month - 7;
       if ($monthBegin < 0)
@@ -71,15 +70,13 @@ class Duty extends Eloquent
       $year  = date("Y");
       $month = date("m");
       $day   = date("d");
-
+      $yearBefore = $year;
       $month += 4;
 
       if ($month > 12){ 
-        $month -= 12;
-        $yearBefore = $year--;        
+        $month -= 12;      
+        $year++;
       }
-      else 
-        $yearBefore = $year;
       
       $monthBegin = $month - 7;
       if ($monthBegin < 0)

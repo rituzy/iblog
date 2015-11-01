@@ -76,7 +76,9 @@ return [
   'Cards'        => 'Card|Cards',
   'Workers'      => 'Worker|Workers',
   'Albums'       => 'Album|Albums',
-
+  'Todos'        => 'Todo|Todos',
+  'Authors'      => 'Author|Authors',
+  
   'Login page'   => 'Login page',
   'Username'     => 'Username',
   'Password here'  => 'Password here',
@@ -108,6 +110,13 @@ return [
   'Content'      => 'Content',    
   'Card listings'=> 'Card listings',
 
+  'Todo listings' => 'Todo listings',
+  'Todo content'  => 'Todo content',
+  'Todo deadline' => 'Deadline',
+  'Todo priority' => 'Priority',
+  'Todo status'   => 'Status',
+  'Todo author'   => 'Author',
+  
   'Leave a Reply on' => 'Leave a Reply on',
   'Email'        => 'Email',
   'Choose an image' => 'Choose an image',
@@ -195,5 +204,12 @@ return [
   'SLI'           => 'success logged in',
   'FTL'           => 'failure to login',
   'VKLog'         => 'Login through ',
+  
+  'Done'          => 'Done',
+  'New task'      => 'New task',
+  'Fucked up'     => 'Fucked up',
+  'Rejected'      => 'Rejected',
+  'shortEdit'     => 'Ed',
+  'shortDelete'   => 'Del',
   
 ];

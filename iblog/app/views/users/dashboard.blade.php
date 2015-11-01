@@ -16,12 +16,15 @@
                     {{HTML::linkRoute('user.delete', trans('messages.User Delete'), Auth::user()->id)}}
                 </li>
                 <li class="divider"></li>
-                <li class="{{ (strpos(URL::current(),route('user.delete','user'))!== false) ? 'active' : '' }}">
+                <li class="{{ (strpos(URL::current(),route('album.list'))!== false) ? 'active' : '' }}">
                     {{HTML::linkRoute('album.list', trans('messages.LCPA') )}}
                 </li>
                 <li class="divider"></li>
-                <li class="{{ (strpos(URL::current(),route('user.delete','user'))!== false) ? 'active' : '' }}">
+                <li class="{{ (strpos(URL::current(),route('photo.list'))!== false) ? 'active' : '' }}">
                     {{HTML::linkRoute('photo.list',trans('messages.LCP') )}}
+                </li>
+                <li class="{{ (strpos(URL::current(),route('todo.list'))!== false) ? 'active' : '' }}">
+                    {{HTML::linkRoute('todo.list',trans('messages.Todo listings') )}}
                 </li>
             @endif
             <li class="divider"></li>            

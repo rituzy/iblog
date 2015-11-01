@@ -11,9 +11,10 @@ Route::model('craft','Craft');
 Route::model('worker','Worker');
 Route::model('duty','Duty');
 Route::model('card','Card');
- 
+Route::model('todo','Todo');
+
 /* Routes for all */
-Route::get('/parse/site',['as' => 'parse.site','uses' => 'BlogController@parseSite']);
+//Route::get('/parse/site',['as' => 'parse.site','uses' => 'BlogController@parseSite']);
 Route::get('/post/{post}/show',['as' => 'post.show','uses' => 'PostController@showPost']);
 Route::get('/tag/{tag}/show',['as' => 'tag.show','uses' => 'TagController@showTaggables']);
 Route::get('/comment/{comment}/show',['as' => 'comment.show.all','uses' =>'CommentController@showCommentAll']);
@@ -110,7 +111,12 @@ Route::group(['prefix' => 'user','before'=>'auth'],function()
     Route::get('/photo_list',['as' => 'photo.list','uses' => 'PhotoController@listPhotos']);
     Route::get('/photo/new',['as' => 'photo.new','uses' => 'PhotoController@newPhoto']);
     Route::get('/photo/{photo}/edit',['as' => 'photo.edit','uses' => 'PhotoController@editPhoto']);
-    Route::get('/photo/{photo}/delete',['as' => 'photo.delete','uses' => 'PhotoController@deletePhoto']);	
+    Route::get('/photo/{photo}/delete',['as' => 'photo.delete','uses' => 'PhotoController@deletePhoto']);
+    Route::get('/todo_list',['as' => 'todo.list','uses' => 'TodoController@listTodo']); 
+    Route::get('/todo/new',['as' => 'todo.new','uses' => 'TodoController@newTodo']);
+    Route::get('/todo/{todo}/edit',['as' => 'todo.edit','uses' => 'TodoController@editTodo']);
+    Route::get('/todo/{todo}/delete',['as' => 'todo.delete','uses' => 'TodoController@deleteTodo']);
+
 	//post routes
 	Route::post('/{user}/update',['as' => 'user.update','uses' => 'SingleUserController@updateUser']);
 	Route::post('/album/save',['as' => 'album.save','uses' => 'AlbumController@saveAlbum']);
@@ -123,6 +129,8 @@ Route::group(['prefix' => 'user','before'=>'auth'],function()
     Route::post('/post/{post}/comment',['as' => 'comment.new.reg','uses' =>'CommentController@newCommentReg']);
     Route::post('/comment/{comment}/comment',['as' => 'comment.comment.new.reg','uses' =>'CommentController@newCommentOnCommentReg']);
     Route::post('/album/{album}/updateRole',['as' => 'albumRole.update','uses' => 'AlbumController@updateAlbumRole']);
+    Route::post('/todo/save',['as' => 'todo.save','uses' => 'TodoController@saveTodo']);
+	Route::post('/todo/{todo}/update',['as' => 'todo.update','uses' => 'TodoController@updateTodo']);
 });
 
 Route::group(['prefix' => 'photos'],function()
