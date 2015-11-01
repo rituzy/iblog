@@ -10,4 +10,5 @@ iblog/public/img/pncpictures
 iblog/app/storage/photos/*.*
 iblog/app/config/*.*
 iblog/dump.sql
-
+iblog/app/config/views/admin/login.blade.php
+iblog/public/craft_*
