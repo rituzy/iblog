@@ -211,5 +211,6 @@ return [
   'Rejected'      => 'Rejected',
   'shortEdit'     => 'Ed',
   'shortDelete'   => 'Del',
+  'Deleted'       => 'deleteld',
   
 ];

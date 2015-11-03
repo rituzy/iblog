@@ -13,7 +13,8 @@
 
 App::before(function($request)
 {
-  /*
+    Input::merge(array_strip_tags(Input::all()));
+    /*
 	// Set default locale.
     $mLocale = Config::get( 'app.locale' );
     // Has a session locale already been set?

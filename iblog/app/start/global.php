@@ -1,5 +1,5 @@
 <?php
-
+require 'custom_helpers.php';
 /*
 |--------------------------------------------------------------------------
 | Register The Laravel Class Loader

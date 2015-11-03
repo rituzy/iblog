@@ -209,4 +209,5 @@ return [
   'Rejected'      => 'Отклонено',
   'shortEdit'     => 'Ред',
   'shortDelete'   => 'Уд',
+  'Deleted'       => 'удален',
 ];

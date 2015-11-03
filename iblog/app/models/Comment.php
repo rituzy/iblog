@@ -112,7 +112,8 @@ class Comment extends Eloquent {
              return $this->commenter;
         $user = User::where('id','=',$this->user_id)
                       ->first(); 
-        return $user->username;
+        if (isset($user)) return $user->username;
+        return trans('messages.Deleted');
     }
 
     public function getPost()
