@@ -8,19 +8,19 @@
 <div class="row">
     <div class="small-5 large-5 column">
         {{ Form::label('content',trans('messages.Todo content').':') }}
-        {{ Form::text('content',Input::old('content')) }}
+        {{ Form::text('content',$todo->content) }}
     </div>
     <div class="small-5 large-5 column">
         {{ Form::label('deadline',trans('messages.Todo deadline').':') }}
-        {{ Form::text('deadline',Input::old('deadline')) }}
+        {{ Form::text('deadline',$todo->deadline) }}
     </div>
     <div class="small-5 large-5 column">
         {{ Form::label('priority',trans('messages.Todo priority').':') }}
-        {{ Form::select('priority', [0, 1, 2], 1) }}        
+        {{ Form::select('priority', [0, 1, 2], $todo->priority) }}        
     </div>
     <div class="small-5 large-5 column">
         {{ Form::label('status',trans('messages.Todo status').':') }}
-        {{ Form::select('status', [trans('messages.New task'),trans('messages.Done'),trans('messages.Fucked up'),trans('messages.Rejected')], trans('messages.New task')) }}        
+        {{ Form::select('status', [trans('messages.New task'),trans('messages.Done'),trans('messages.Fucked up'),trans('messages.Rejected')], $todo->status) }}        
     </div>
     @if(Auth::user()->hasRole('TODO'))
         <div class="small-5 large-5 column">

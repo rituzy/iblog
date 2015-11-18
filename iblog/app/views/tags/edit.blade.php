@@ -7,7 +7,7 @@
 <div class="row">
     <div class="small-5 large-5 column">
         {{ Form::label('name',trans('messages.Name').':') }}
-        {{ Form::text('name',Input::old('name')) }}
+        {{ Form::text('name',$tag->name) }}
     </div>        
 </div>
 @if($errors->has())
