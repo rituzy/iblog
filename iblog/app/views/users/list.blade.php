@@ -2,7 +2,7 @@
 <table>
     <thead>
         <tr>
-            <th width="300">{{ trans('messages.Userame'); }}</th>
+            <th width="300">{{ trans('messages.Username'); }}</th>
             <th width="120">{{ trans('messages.Edit'); }}</th>
             <th width="120">{{ trans('messages.Delete'); }}</th>
             <th width="120">{{ Lang::choice('messages.Roles', 2); }}</th>
