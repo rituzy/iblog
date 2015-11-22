@@ -1,5 +1,5 @@
 <?php
- 
+
 class Todo extends Eloquent
 {
     protected $fillable = array('content','deadline','priority','status','user_id','author_id');
@@ -11,20 +11,20 @@ class Todo extends Eloquent
             'status'    => '0',
     );
 
-    public static $rules = [            
-            'content' => 'required',            
+    public static $rules = [
+            'content' => 'required',
             'user_id' => 'required',
             'status'  => 'required'
     ];
     /**
      * Get roles permitted to the album
-     */ 
+     */
     public static function getTodosOrdered($pagination = 10)
     {
         return Todo::orderBy('id','desc')
                       ->paginate($pagination);
     }
-  
+
     function getStatus()
     {
         if ($this->status == 1) return trans('messages.Done');
@@ -32,10 +32,23 @@ class Todo extends Eloquent
         if ($this->status == 3) return trans('messages.Rejected');
         return trans('messages.New task');
     }
-    
+
     public function user()
     {
         return $this->belongsTo('User');
+    }
+
+    public function sendNotification($mes)
+    {
+        $user = User::findUserByID($this->user_id);
+        if( isset($user) ) {
+          Mail::send('emails.TodoCreated', ['content'=>$this->content,
+          'priority'=>$this->priority,'deadline'=>$this->deadline,'mes'=>$mes], 
+            function($message) use($user,$mes)
+            {
+                $message->to($user->email, $user->username)->subject($mes);
+            });
+        }
     }
     /* if we decide to use roles for accessing todo lists of different users
     public function isAllowedUser($user_id){

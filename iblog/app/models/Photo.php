@@ -1,21 +1,21 @@
 <?php
- 
+
 class Photo extends Eloquent
 {
     protected $fillable = array('image','description','user_id','album_id');
-    
+
     protected $softDelete = true;
 
-    public static $rules = [            
+    public static $rules = [
             'photo'    => 'required|image|mimes:jpeg,jpg,bmp,png,gif|max:3000',
             'user_id'  => 'required',
-            'album_id' => 'required',            
+            'album_id' => 'required',
     ];
 
-    public static $rulesEdit = [            
+    public static $rulesEdit = [
             'photo'    => 'image|mimes:jpeg,jpg,bmp,png,gif|max:3000',
             'user_id'  => 'required',
-            'album_id' => 'required',            
+            'album_id' => 'required',
     ];
 
     public function user(){
@@ -36,9 +36,9 @@ class Photo extends Eloquent
 	 * @return string
 	 */
   	public function getPhotoImage()
-  	{   
+  	{
   	    if(!empty($this->image) && File::exists(storage_path().'/photos/'.$this->image))
-  	    {       
+  	    {
 
   	        // Get the filename from the full path
   	        $filename = basename(storage_path().'/photos/'.$this->image);
@@ -50,7 +50,7 @@ class Photo extends Eloquent
   	}
 
   	/**
-  	* Get photos ordered 
+  	* Get photos ordered
   	*
   	*/
   	public static function getPhotoOrdered($pagination = 30){
@@ -77,8 +77,8 @@ class Photo extends Eloquent
     public static function getPhotosLike($searchItem, $pagination = 10)
     {
         $searchItem = '%'.$searchItem.'%';
-                
-        return Photo::where('description','LIKE', $searchItem)                      
+
+        return Photo::where('description','LIKE', $searchItem)
                         ->paginate($pagination);
     }
 
@@ -137,7 +137,7 @@ class Photo extends Eloquent
       if ($month == $feb && $year%4 != 0) $max_days = 28;
       if ($month == $feb && $year%4 == 0) $max_days = 29;
       if ($day > $max_days) return $max_days;
-      return $day;        
+      return $day;
     }
 
     public function softDelete(){
@@ -151,10 +151,10 @@ class Photo extends Eloquent
 
     public function getCreatorName(){
       $users = User::getUserOrdered();
-      foreach($users as $user)      
+      foreach($users as $user)
         if($user->id == $this->user_id)
           return $user->username;
-      return 'noname';
+      return trans('messages.Deleted');
     }
 
     public function getAlbumName(){
@@ -163,7 +163,7 @@ class Photo extends Eloquent
     }
 
     public function addTagOrCreateNew($tag,$user_id = 0)
-    {         
+    {
         $tagFound = Tag::where('id','=',$tag)->first();
 
         if (!isset($tagFound)){
@@ -173,6 +173,6 @@ class Photo extends Eloquent
             $tagFound->save();
         }
 
-        $tagFound->photos()->save($this);        
+        $tagFound->photos()->save($this);
     }
 }
