@@ -1,5 +1,24 @@
 <h2 class="album-listings">{{ trans('messages.Todo listings'); }}</h2><hr>
 <span class="right">{{ HTML::linkRoute('todo.new',trans('messages.New').' '.Lang::choice('messages.Todos', 1),null,['class' => 'button tiny radius']) }}</span>
+
+<div>
+
+  {{ Form::open(['route'=>['todo.list.filtered']]) }}
+  <table border=0>
+    <tr>
+        <td>  {{ Form::select('filter',['0' => trans('messages.All'), '1' => trans('messages.Actual') ,'2' => trans('messages.Not Actual')], $defaultActual,['style'=>'margin-bottom:0']) }} </td>
+        <td>  {{ Form::checkbox('my',1,($my==1) ? true : false, ['style'=>'margin-bottom:0']) }} {{ " ".trans('messages.Created by me')."<br/>"}} </td>
+        <td>
+          @if( Auth::user()->hasRole('TODO') || Auth::user()->hasRole('admin') )
+              {{ Form::checkbox('all',1,($all==1) ? true : false, ['style'=>'margin-bottom:0']) }} {{ " ".trans('messages.All todos')."<br/>"}}
+          @endif
+        </td>
+        <td>  {{ Form::submit(trans('messages.Filter'),['class'=>'button tiny radius']) }} </td>
+    </tr>
+  </table>
+  {{ Form::close() }}
+</div>
+
 <table>
     <thead>
         <tr>
@@ -15,8 +34,15 @@
         </tr>
     </thead>
     <tbody>
+
     @foreach($todos as $todo)
-        @if(Auth::user()->id == $todo->user_id || Auth::user()->hasRole('TODO') || Auth::user()->hasRole('admin'))
+        @if(    ( Auth::user()->id == $todo->user_id
+                  && (     $todo->author_id ==  Auth::user()->id  ||  $my == 0)
+                ) ||
+                ( $all==1
+                  && (Auth::user()->hasRole('TODO') || Auth::user()->hasRole('admin') ) 
+                )
+            )
             <tr>
                 <td>{{$todo->content}}</td>
                 <td>{{$todo->deadline}}</td>

@@ -1,30 +1,31 @@
 <?php
 //file: app/controllers/BlogController.php
- 
+
 include(app_path().'/includes/simple_html_dom.php');
 
-class BlogController extends BaseController 
+class BlogController extends BaseController
 {
+    /*
     public function parseSite()
-    {       
+    {
         // Retrieve the DOM from a given URL
         $url = 'http://www.afisha.ru/msk/cinema/';
         // инициализация сеанса
         $ch = curl_init();
-         
+
         // установка URL и других необходимых параметров
         curl_setopt($ch, CURLOPT_URL, $url);
         //curl_setopt($ch, CURLOPT_HEADER, 0);
         //curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         //curl_setopt($ch, CURLOPT_AUTOREFERER, 1);
-        //curl_setopt($ch, CURLOPT_REFERER, $url);  
+        //curl_setopt($ch, CURLOPT_REFERER, $url);
         //curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0');
         //curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
         // загрузка страницы и выдача её браузеру
         curl_exec($ch);
-         
+
         // завершение сеанса и освобождение ресурсов
         curl_close($ch);
         $temp = $ch;
@@ -33,11 +34,12 @@ class BlogController extends BaseController
         $posts = Post::getPostsOrdered();
         // For Laravel 4.2 use getFactory() instead of getEnvironment() method.
         $posts->getEnvironment()->setViewName('pagination::simple');
-        $this->layout->title = 'Home Page';        
+        $this->layout->title = 'Home Page';
         $this->layout->main = View::make('home',['recentPosts'=>$posts])
                                     ->nest('content','wa',['temp'=>$temp]);
-        
+
     }
+    */
 
     public function __construct()
     {
@@ -52,7 +54,7 @@ class BlogController extends BaseController
         $tags  = Tag::getTagsOrdered();
         // For Laravel 4.2 use getFactory() instead of getEnvironment() method.
         $posts->getEnvironment()->setViewName('pagination::simple');
-        $this->layout->title = trans('messages.HP');        
+        $this->layout->title = trans('messages.HP');
         $this->layout->main = View::make('home',['recentPosts'=>$posts, 'allTags' => $tags])
                                     ->nest('content','index',['posts'=>$posts]);
     }
@@ -75,7 +77,7 @@ class BlogController extends BaseController
         else
             $notFoundPosts = false;
 
-        if ($comments->isEmpty()) 
+        if ($comments->isEmpty())
             $notFoundComments = true;
         else
             $notFoundComments = false;
@@ -101,7 +103,7 @@ class BlogController extends BaseController
     public function getSearchFullText()
     {
         $searchTerm = Input::get('s');
-        
+
         $posts = Post::whereRaw('match(title,content) against(?)',[$searchTerm])
                        ->paginate(10);
         $tags  = Tag::getTagsOrdered();
@@ -110,10 +112,10 @@ class BlogController extends BaseController
         $posts->appends(['s'=>$searchTerm]);
         $this->layout->with('title',trans('messages.Search').': '.$searchTerm);
         $this->layout->main = View::make('home',['recentPosts'=>$posts,'allTags'=>$tags])
-                                    ->nest('content','index',($posts->isEmpty()) ? 
+                                    ->nest('content','index',($posts->isEmpty()) ?
                                         ['notFound' => true ] : compact('posts'));
     }
-     
+
     public function getLogin()
     {
         $this->layout->title=trans('messages.Login');
@@ -121,7 +123,7 @@ class BlogController extends BaseController
         $this->layout->main = View::make('users.dashboard')
              ->nest('content','admin.login');
     }
-     
+
     public function postLogin()
     {
         $credentials = [
@@ -148,7 +150,7 @@ class BlogController extends BaseController
                              ->withInput();
         }
     }
-     
+
     public function getLogout()
     {
         Auth::logout();
@@ -165,7 +167,7 @@ class BlogController extends BaseController
 
     public function showPhotos()
     {
-        
+
         $posts = Post::getPostsOrdered();
         // For Laravel 4.2 use getFactory() instead of getEnvironment() method.
         $posts->getEnvironment()->setViewName('pagination::simple');
@@ -173,12 +175,12 @@ class BlogController extends BaseController
         $checked_albums_all = Album::getNames();
         $checked_albums = $checked_albums_all;
 
-        $users_opt = User::getUserOptions();        
+        $users_opt = User::getUserOptions();
         $album_ids = Album::getIdsByNames($checked_albums);
         $users     = User::all();
         $albums    = Album::getAlbumsOrdered();
 
-        $this->layout->title = trans('messages.My Photos');        
+        $this->layout->title = trans('messages.My Photos');
         $this->layout->main = View::make('home',['recentPosts'=>$posts,'allTags'=>$tags])
                                     ->nest('content','photos',
                                         compact('users','albums',
@@ -187,36 +189,36 @@ class BlogController extends BaseController
 
     public function showCrafts()
     {
-        
+
         $posts = Post::getPostsOrdered();
         // For Laravel 4.2 use getFactory() instead of getEnvironment() method.
         $posts->getEnvironment()->setViewName('pagination::simple');
         $tags  = Tag::getTagsOrdered();
         $crafts = Craft::getCraftsOrdered();
 
-        $this->layout->title = trans('messages.My Crafts');        
+        $this->layout->title = trans('messages.My Crafts');
         $this->layout->main = View::make('home',['recentPosts'=>$posts,'allTags'=>$tags])
                                     ->nest('content','crafts',
                                         compact('crafts'));
     }
 
     public function showPhotosByAlbum()
-    {   
-        $posts = Post::getPostsOrdered();        
+    {
+        $posts = Post::getPostsOrdered();
         $posts->getEnvironment()->setViewName('pagination::simple');
 
         $checked_albums_all = Album::getNames();
         $checked_albums = $checked_albums_all;
         $tags  = Tag::getTagsOrdered();
 
-        foreach ($checked_albums as $name){            
-            $cmp_name = preg_replace('/\s+/','_', $name);            
-            if (Input::get($cmp_name) != 1){              
+        foreach ($checked_albums as $name){
+            $cmp_name = preg_replace('/\s+/','_', $name);
+            if (Input::get($cmp_name) != 1){
               $key = array_search($name,$checked_albums);
               unset($checked_albums[$key]);
             }
         }
-        
+
         $users_opt = User::getUserOptions();
         if( empty( $checked_albums ) ) $checked_albums = $checked_albums_all;
         $album_ids = Album::getIdsByNames($checked_albums);
@@ -230,8 +232,8 @@ class BlogController extends BaseController
     }
 
     public function showPhotosByUser()
-    {   
-        $posts = Post::getPostsOrdered();        
+    {
+        $posts = Post::getPostsOrdered();
         $posts->getEnvironment()->setViewName('pagination::simple');
         $tags  = Tag::getTagsOrdered();
 
@@ -248,16 +250,16 @@ class BlogController extends BaseController
                                             compact('photos','users','albums',
                                             'checked_albums','users_opt','uid','album_ids'));
     }
-    
+
     public function showPhotosByDate()
-    {   
-        $posts = Post::getPostsOrdered();        
+    {
+        $posts = Post::getPostsOrdered();
         $posts->getEnvironment()->setViewName('pagination::simple');
 
         $checked_albums = Album::getNames();
         $year      = Input::get('year');
         $month     = Input::get('month');
-        $day       = Input::get('day');       
+        $day       = Input::get('day');
         $photos    = Photo::getPhotoYoungerThanDay($year, $month, $day);
         $album_ids = Photo::getAlbumIdYoungerThanDay($year, $month, $day);
         $users     = User::all();
@@ -271,5 +273,5 @@ class BlogController extends BaseController
                                             'checked_albums','users_opt',
                                             'year','month','day','album_ids'));
     }
- 
+
 }

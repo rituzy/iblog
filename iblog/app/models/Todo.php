@@ -25,6 +25,20 @@ class Todo extends Eloquent
                       ->paginate($pagination);
     }
 
+    public static function getTodosActual($pagination = 10)
+    {
+        return Todo::where('status','=','0')
+                     ->orderBy('id','desc')
+                     ->paginate($pagination);
+    }
+
+    public static function getTodosNotActual($pagination = 10)
+    {
+        return Todo::where('status','<>','0')
+                     ->orderBy('id','desc')
+                     ->paginate($pagination);
+    }
+
     function getStatus()
     {
         if ($this->status == 1) return trans('messages.Done');
@@ -41,14 +55,25 @@ class Todo extends Eloquent
     public function sendNotification($mes)
     {
         $user = User::findUserByID($this->user_id);
-        if( isset($user) ) {
+        if( isset($user) && isset($user->email) && $user->email <> '' ) {
           Mail::send('emails.TodoCreated', ['content'=>$this->content,
-          'priority'=>$this->priority,'deadline'=>$this->deadline,'mes'=>$mes], 
+          'priority'=>$this->priority,'deadline'=>$this->deadline,'mes'=>$mes],
             function($message) use($user,$mes)
             {
                 $message->to($user->email, $user->username)->subject($mes);
             });
         }
+    }
+
+    public static function getFilteredTodosByFlag($flag)
+    {
+        if ($flag == 1)
+          return Todo::getTodosActual();
+          
+        if ($flag == 2)
+          return Todo::getTodosNotActual();
+
+        return Todo::getTodosOrdered();
     }
     /* if we decide to use roles for accessing todo lists of different users
     public function isAllowedUser($user_id){

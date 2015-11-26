@@ -8,8 +8,11 @@ class TodoController extends BaseController
     {
         $todos = Todo::getTodosOrdered();
         $users_opt = User::getUserOptions();
+        $my = 1;
+        $all = 0;
+        $defaultActual = 0;
         $this->layout->title = trans('messages.Todo listings');
-        $this->layout->main = View::make('users.dashboard')->nest('content','todos.list',compact('todos','users_opt'));
+        $this->layout->main = View::make('users.dashboard')->nest('content','todos.list',compact('todos','users_opt','my','defaultActual','all'));
     }
 
     public function newTodo()
@@ -102,6 +105,19 @@ class TodoController extends BaseController
             return Redirect::back()
                              ->withErrors($valid)
                              ->withInput();
+    }
+
+    public function listFiltered()
+    {
+        $flag      = Input::get('filter');
+        $my        = Input::get('my');
+        $all       = Input::get('all');
+        $todos     = Todo::getFilteredTodosByFlag($flag);
+        $defaultActual = $flag;
+
+        $users_opt = User::getUserOptions();
+        $this->layout->title = trans('messages.Todo listings');
+        $this->layout->main = View::make('users.dashboard')->nest('content','todos.list',compact('todos','users_opt','my','defaultActual','all'));
     }
 
 }

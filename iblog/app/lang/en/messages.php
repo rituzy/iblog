@@ -13,11 +13,11 @@ return [
   'TSNFC'        => 'Sorry no comments found for tag :tag',
   'TSNFPo'       => 'Sorry no photos found for tag :tag',
   'TSNFCr'       => 'Sorry no crafts found for tag :tag',
-  
+
   'FP'           => 'Posts found for your query:',
   'FC'           => 'Comments found for your query:',
   'FPo'          => 'Photos found for your query:',
-  'FCr'          => 'Сrafts found for your query:',  
+  'FCr'          => 'Сrafts found for your query:',
   'TFP'          => 'Posts found for tag :tag',
   'TFC'          => 'Comments found for tag :tag',
   'TFPo'         => 'Photos found for tag :tag',
@@ -27,16 +27,16 @@ return [
   'TSRPo'        => 'Sorry you do not have rigts to see photos for tag :tag',
 
   'RFA'          => 'Read full article',
-  'comments'     => 'comments', 
-  'wrote'        => 'wrote', 
+  'comments'     => 'comments',
+  'wrote'        => 'wrote',
 
   'Home'         => 'Home',
-  'My Crafts'    => 'My Crafts', 
-  'My Photos'    => 'My Photos', 
-  'AdminDashborad' => 'Dashborad', 
-  'Profile'      => 'Profile', 
-  'Logout'       => 'Logout', 
-  'Login'        => 'Login', 
+  'My Crafts'    => 'My Crafts',
+  'My Photos'    => 'My Photos',
+  'AdminDashborad' => 'Dashborad',
+  'Profile'      => 'Profile',
+  'Logout'       => 'Logout',
+  'Login'        => 'Login',
   'Register'     => 'Register',
 
   'iBlog'        => 'iBlog',
@@ -46,6 +46,7 @@ return [
   'Filter by album' => 'Filter by album',
   'Filter by user' => 'Filter by user',
   'Filter by date' => 'Filter by date',
+  'Filter'       => 'Filter',
   'Select user'  => 'Select user',
   'All'          => 'All',
   'Younger than' => 'Younger than',
@@ -62,7 +63,7 @@ return [
   'Search'       => 'Search',
 
   'New'          => 'New',
-  'List'         => 'List',  
+  'List'         => 'List',
   'Posts'        => 'Post|Posts',
   'Duties'       => 'Duty|Duties',
   'Photos'       => 'Photo|Photos',
@@ -78,15 +79,15 @@ return [
   'Albums'       => 'Album|Albums',
   'Todos'        => 'Todo|Todos',
   'Authors'      => 'Author|Authors',
-  
+
   'Login page'   => 'Login page',
   'Username'     => 'Username',
   'Password here'  => 'Password here',
-  'Your nice name' => 'Your nice name',  
+  'Your nice name' => 'Your nice name',
   'Password'     => 'Password',
   'page'         => 'page',
 
-  'Edit'         => 'Edit',  
+  'Edit'         => 'Edit',
   'New'          => 'New',
   'Add'          => 'Add',
   'Delete'       => 'Delete',
@@ -100,14 +101,14 @@ return [
   'Name'         => 'Name',
   'Created at'   => 'Created at',
   'Updated at'   => 'Updated at',
-  'Created by'   => 'Created by',  
+  'Created by'   => 'Created by',
   'Album listings' => 'Album listings',
   'Album name'   => 'Album name',
   'Album description' => 'Album description',
   'YRTTA'        => 'You do not have rights to edit this album.',
-  
+
   'Color'        => 'Color',
-  'Content'      => 'Content',    
+  'Content'      => 'Content',
   'Card listings'=> 'Card listings',
 
   'Todo listings' => 'Todo listings',
@@ -116,7 +117,7 @@ return [
   'Todo priority' => 'Priority',
   'Todo status'   => 'Status',
   'Todo author'   => 'Author',
-  
+
   'Leave a Reply on' => 'Leave a Reply on',
   'Email'        => 'Email',
   'Choose an image' => 'Choose an image',
@@ -175,7 +176,7 @@ return [
   'No Roles on'   => 'No Roles on',
   'SNFF'          => 'No crafts yet...',
   'RFA'           => 'Read full article',
-  'Leave a Reply on the post' => 'Leave a Reply on the post', 
+  'Leave a Reply on the post' => 'Leave a Reply on the post',
   'YDNHRTEP'      => 'You do not have rights to edit this photo',
   'is saved'      => 'is saved!',
   'is deleted'    => 'is deleted!',
@@ -204,7 +205,7 @@ return [
   'SLI'           => 'success logged in',
   'FTL'           => 'failure to login',
   'VKLog'         => 'Login through ',
-  
+
   'Done'          => 'Done',
   'New task'      => 'New task',
   'Fucked up'     => 'Fucked up',
@@ -212,5 +213,7 @@ return [
   'shortEdit'     => 'Ed',
   'shortDelete'   => 'Del',
   'Deleted'       => 'deleteld',
-  
+  'Actual'        => 'Actual',
+  'Created by me' => 'Created by me',
+  'All todos'     => 'All todos',
 ];
