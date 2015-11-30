@@ -21,21 +21,24 @@ class Todo extends Eloquent
      */
     public static function getTodosOrdered($pagination = 10)
     {
-        return Todo::orderBy('id','desc')
-                      ->paginate($pagination);
-    }
-
-    public static function getTodosActual($pagination = 10)
-    {
-        return Todo::where('status','=','0')
-                     ->orderBy('id','desc')
+        return Todo::orderBy('priority','asc')
+                     ->orderBy('updated_at','desc')
                      ->paginate($pagination);
     }
 
-    public static function getTodosNotActual($pagination = 10)
+    private static function getTodosActual($pagination = 10)
+    {
+        return Todo::where('status','=','0')
+                     ->orderBy('priority','asc')
+                     ->orderBy('updated_at','desc')
+                     ->paginate($pagination);
+    }
+
+    private static function getTodosNotActual($pagination = 10)
     {
         return Todo::where('status','<>','0')
-                     ->orderBy('id','desc')
+                     ->orderBy('priority','asc')
+                     ->orderBy('updated_at','desc')
                      ->paginate($pagination);
     }
 
@@ -50,6 +53,12 @@ class Todo extends Eloquent
     public function user()
     {
         return $this->belongsTo('User');
+    }
+
+    function isActual()
+    {
+        if ($this->status == 0) return true;
+        return false;
     }
 
     public function sendNotification($mes)
@@ -67,13 +76,16 @@ class Todo extends Eloquent
 
     public static function getFilteredTodosByFlag($flag)
     {
-        if ($flag == 1)
-          return Todo::getTodosActual();
-          
-        if ($flag == 2)
-          return Todo::getTodosNotActual();
+        //workaround - big pagination due to bug of the component while using with post method
+        $pagination = 200;
 
-        return Todo::getTodosOrdered();
+        if ($flag == 1)
+          return Todo::getTodosActual($pagination);
+
+        if ($flag == 2)
+          return Todo::getTodosNotActual($pagination);
+
+        return Todo::getTodosOrdered($pagination);
     }
     /* if we decide to use roles for accessing todo lists of different users
     public function isAllowedUser($user_id){

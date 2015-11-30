@@ -14,42 +14,51 @@
 App::before(function($request)
 {
     Input::merge(array_strip_tags(Input::all()));
-    
-    /*
-	  // Set default locale.
-    $mLocale = Config::get( 'app.locale' );
-    // Has a session locale already been set?
-    if ( !Session::has( 'locale' ) )
-    {
-        // No, a session locale hasn't been set.
-        // Was there a cookie set from a previous visit?
-        $mFromCookie = Cookie::get( 'locale', null );
-        if ( $mFromCookie != null && in_array( $mFromCookie, Config::get( 'app.locales' ) ) )
-        {
-            // Cookie was previously set and it's a supported locale.
-            $mLocale = $mFromCookie;
-        }
-        else
-        {
-            // attempt to detect locale from browser.
-            $mFromBrowser = substr( Request::server( 'http_accept_language' ), 0, 2 );
-            if ( $mFromBrowser != null && in_array( $mFromBrowser, Config::get( 'app.locales' ) ) )
-            {
-                // browser lang is supported, use it.
-                $mLocale = $mFromBrowser;
-            } // $mFromBrowser
-        } // $mFromCookie
-        Session::put( 'locale', $mLocale );
-        Cookie::forever( 'locale', $mLocale );
-    } // Session?
-    else
-    {
-        // session locale is available, use it.
-        $mLocale = Session::get( 'locale' );
-    } // Session?
-    // set application locale for current session.
-    App::setLocale( $mLocale );
-    */
+
+    Route::matched(function($route, $request) {
+
+      if($route->getName() != 'route_not_translate') { // don't do it for exclusive area
+
+        $language = 'en'; //english is fallback locale
+        $lgs = ['ru','en'];
+
+        // get the default browser language with the $request object
+        $browserLg = substr($request->server->get('HTTP_ACCEPT_LANGUAGE'), 0, 2);
+
+        //these to strings should be removed if you uncomment next block of parsing address
+        if(in_array($browserLg, $lgs))
+            $language = $browserLg;
+
+        //block of parsing address is not needed as all pages have the same address for both languages
+        /*
+        // language set from route (for example /en/some-url)
+        $requestLg = $request->segment(1);
+
+        # if the language called in url request matches your set of languages
+        if (null !== $requestLg && in_array($requestLg, $lgs)) {
+
+                $language = $requestLg;
+
+        # default browser lg
+        } else {
+
+            if(in_array($browserLg, $lgs)) {
+
+                $language = $browserLg;
+            }
+        */
+      }
+
+      // set the validated language
+      $_ENV['LOCALE'] = $language;
+      Config::set('locale',$language);
+      App::setLocale($language);
+
+      // share it with views if you want
+      View::share('locale', $language);
+
+    });
+
 });
 
 

@@ -10,7 +10,7 @@ class TodoController extends BaseController
         $users_opt = User::getUserOptions();
         $my = 1;
         $all = 0;
-        $defaultActual = 0;
+        $defaultActual = 1;
         $this->layout->title = trans('messages.Todo listings');
         $this->layout->main = View::make('users.dashboard')->nest('content','todos.list',compact('todos','users_opt','my','defaultActual','all'));
     }

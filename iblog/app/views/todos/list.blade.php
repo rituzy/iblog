@@ -36,12 +36,27 @@
     <tbody>
 
     @foreach($todos as $todo)
-        @if(    ( Auth::user()->id == $todo->user_id
-                  && (     $todo->author_id ==  Auth::user()->id  ||  $my == 0)
-                ) ||
-                ( $all==1
-                  && (Auth::user()->hasRole('TODO') || Auth::user()->hasRole('admin') ) 
+        @if(  (
+                ( Auth::user()->id == $todo->user_id
+                  &&
+                  ( $todo->author_id ==  Auth::user()->id  ||  $my == 0 )
                 )
+                ||
+                ( $all == 1
+                  &&
+                  ( Auth::user()->hasRole('TODO') || Auth::user()->hasRole('admin') )
+                )
+              )
+
+              &&
+              (
+                ( $todo->isActual() || $defaultActual <> 1)
+                ||
+                ( !$todo->isActual() || $defaultActual <> 2)
+                ||
+                ( $defaultActual == 0)
+              )
+
             )
             <tr>
                 <td>{{$todo->content}}</td>
@@ -72,4 +87,4 @@
     @endforeach
     </tbody>
 </table>
-{{$todos->links()}}
+  {{$todos->links()}}
