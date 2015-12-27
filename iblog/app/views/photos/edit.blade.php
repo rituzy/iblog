@@ -19,8 +19,8 @@
             {
                 ev.preventDefault();
                 //change the selected drop down text
-                $(othersOption).html($("#newTag").val()); 
-            } 
+                $(othersOption).html($("#newTag").val());
+            }
         });
         $('#comment').submit(function() {
             var othersOption = $('#tag').find('option:selected');
@@ -41,23 +41,23 @@
 @if(Auth::user()->id == $photo->user_id || Auth::user()->hasRole('admin'))
     {{ Form::open(['route'=>['photo.update',$photo->id],'files'=>true, 'id'=>'comment']) }}
     <div class="row">
-        <div class="small-5 large-5 column">    
+        <div class="small-5 large-5 column">
             {{ Form::label('photo',trans('messages.Choose a photo').':') }}
             {{ Form::file('photo')}}
         </div>
         <div class="small-5 large-5 column">
             {{ Form::label('description',trans('messages.Description').':') }}
-            {{ Form::text('description',Input::old('description')) }}
+            {{ Form::text('description',Input::old('description',$photo->description)) }}
         </div>
        <div class="small-5 large-5 column">
             {{ Form::label('album_id',Lang::choice('messages.Albums', 1).':') }}
-            {{ Form::select('album_id', $albums_opt,Input::old('albums')) }}
+            {{ Form::select('album_id', $albums_opt,Input::old('albums',$photo->album_id)) }}
         </div>
         <div class="small-5 large-5 column">
             {{ HTML::image($photo->getPhotoImage(),$photo->description) }}
         </div>
         <div class="small-5 large-5 column">
-            {{ Form::label('tag',trans('messages.Choose a tag').':' ) }}                           
+            {{ Form::label('tag',trans('messages.Choose a tag').':' ) }}
             {{ Form::select('tag',array('default' => trans('messages.Select tag') ) + $tag_opt + array('new' => trans('messages.New tag') ) )}}
             {{ Form::text('newTag',Input::old('newTag'),['id'=>'newTag']) }}
         </div>
@@ -78,5 +78,3 @@
 @else
     {{ trans('messages.YDNHRTEP'); }}
 @endif
- 
-

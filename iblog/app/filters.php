@@ -14,7 +14,7 @@
 App::before(function($request)
 {
     Input::merge(array_strip_tags(Input::all()));
-
+/*
     Route::matched(function($route, $request) {
 
       if($route->getName() != 'route_not_translate') { // don't do it for exclusive area
@@ -30,7 +30,7 @@ App::before(function($request)
             $language = $browserLg;
 
         //block of parsing address is not needed as all pages have the same address for both languages
-        /*
+
         // language set from route (for example /en/some-url)
         $requestLg = $request->segment(1);
 
@@ -46,7 +46,7 @@ App::before(function($request)
 
                 $language = $browserLg;
             }
-        */
+
       }
 
       // set the validated language
@@ -58,7 +58,7 @@ App::before(function($request)
       View::share('locale', $language);
 
     });
-
+*/
 });
 
 
