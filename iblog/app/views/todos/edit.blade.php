@@ -16,16 +16,16 @@
     </div>
     <div class="small-5 large-5 column">
         {{ Form::label('priority',trans('messages.Todo priority').':') }}
-        {{ Form::select('priority', [0, 1, 2], $todo->priority) }}        
+        {{ Form::select('priority', [0, 1, 2], $todo->priority) }}
     </div>
     <div class="small-5 large-5 column">
         {{ Form::label('status',trans('messages.Todo status').':') }}
-        {{ Form::select('status', [trans('messages.New task'),trans('messages.Done'),trans('messages.Fucked up'),trans('messages.Rejected')], $todo->status) }}        
+        {{ Form::select('status', [trans('messages.New task'),trans('messages.Done'),trans('messages.Fucked up'),trans('messages.Rejected')], $todo->status) }}
     </div>
     @if(Auth::user()->hasRole('TODO'))
         <div class="small-5 large-5 column">
             <b>{{ trans('messages.Select user'); }}</b>:</br>
-            {{ Form::select('uid', [Auth::user()->id => $users_opt[Auth::user()->id]]+$users_opt) }}
+            {{ Form::select('uid', [$todo->user->id => $users_opt[$todo->user->id]]+$users_opt) }}
         </div>
     @else
         {{ Form::hidden('uid', Auth::user()->id); }}
@@ -42,4 +42,3 @@
 @endif
 {{ Form::submit(trans('messages.Update'),['class'=>'button tiny radius']) }}
 {{ Form::close() }}
-
