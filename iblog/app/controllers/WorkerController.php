@@ -3,7 +3,7 @@
 class WorkerController extends BaseController
 {    
     /* get functions */
-    //TODO    
+    //empty  
     
     /* post functions */
         
