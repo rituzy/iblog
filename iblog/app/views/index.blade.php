@@ -17,7 +17,7 @@
                 <span>{{link_to_route('post.show',trans('messages.RFA'),$post->id)}}
             </div>
             <div class="post-content">
-                {{ HTML::image($post->image, (Session::get('lang') === 'ru') ? $post->title_ru : $post->title, ['widh'=>'400']) }}
+                {{ ($post->image != null)?HTML::image($post->image, (Session::get('lang') === 'ru') ? $post->title_ru : $post->title, ['widh'=>'400']):"" }}
             </div>
             <footer class="post-footer">
                 <hr>

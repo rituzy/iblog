@@ -24,7 +24,7 @@
                 </a>
             </p>
             <p>
-                {{ ( preg_match('/pncpictures/',$craft->image) == 1) ? HTML::image($craft->image,
+                {{ ( preg_match('/pncpictures/',$craft->image) == 1 && $craft->image != null) ? HTML::image($craft->image,
                         $craft->comment, ['widh'=>'400']) : '' }}
             </p>
         </div>            

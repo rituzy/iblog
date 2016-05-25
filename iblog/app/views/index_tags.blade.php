@@ -18,7 +18,7 @@
                 <span>{{link_to_route('post.show', trans('messages.RFA'),$post->id)}}
             </div>
             <div class="post-content">
-                {{ HTML::image($post->image, $post->title, ['widh'=>'400']) }}
+                {{ ($post->image != null)?HTML::image($post->image, $post->title, ['widh'=>'400']):"" }}
             </div>
             <footer class="post-footer">
                 <hr>
@@ -45,7 +45,7 @@
                 <p>{{$comment->comment}}</p>                
             </div>
             <div class="comment-content">
-                {{ HTML::image($comment->image, $comment->comment, ['widh'=>'400']) }}
+                {{ ($comment->image != null)?HTML::image($comment->image, $comment->comment, ['widh'=>'400']):"" }}
             </div>
             <footer class="comment-footer">
                 <hr>
@@ -96,7 +96,7 @@
                 <p>{{$craft->link}}</p>                
             </div>
             <div class="comment-content">
-                {{ HTML::image($craft->image, (Session::get('lang') === 'ru') ? $craft->title_ru : $craft->title, ['widh'=>'400']) }}
+                {{ ($craft->image != null)?HTML::image($craft->image, (Session::get('lang') === 'ru') ? $craft->title_ru : $craft->title, ['widh'=>'400']):"" }}
             </div>
             <footer class="comment-footer">
                 <hr>
