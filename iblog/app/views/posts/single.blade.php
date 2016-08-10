@@ -9,7 +9,7 @@
         </div>
     </header>
     <div class="post-content">
-        {{ HTML::image($post->image, (Session::get('lang') === 'ru') ? $post->title_ru : $post->title, ['widh'=>'400']) }}
+        {{ ($post->image != null)?HTML::image($post->image, (Session::get('lang') === 'ru') ? $post->title_ru : $post->title, ['widh'=>'400']):"" }}
     </div>
     <div class="post-content">
         <p>{{ (Session::get('lang') === 'ru') ? $post->content_ru : $post->content }}</p>
