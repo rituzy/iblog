@@ -1,6 +1,6 @@
 <h2 class="duty-listings">{{ trans('messages.Card listings'); }}</h2><hr>
 @if ( Auth::check() && (Auth::user()->hasRole('BOSS') || Auth::user()->hasRole('admin') ) ) 
-@if ( Auth::check() && Auth::user()->hasRole('admin') ) 
+@if ( Auth::check() && (Auth::user()->hasRole('BOSS') || Auth::user()->hasRole('admin') ) ) 
     <span class="right">{{ HTML::linkRoute('card.new',trans('messages.New').' '.Lang::choice('messages.Cards', 1),null,['class' => 'button tiny radius']) }}</span>
 @endif
 <table>
