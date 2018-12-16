@@ -75,7 +75,7 @@ class CommentController extends BaseController {
         {
             $comment = new Comment;
             //uncomment the string below to use comment checking by administrator 
-            //$comment->approved = 0;//'no';            
+            $comment->approved = 0;//'no';            
             $comment->commenter = $inputs['commenter'];
             $comment->email     = $inputs['email'];
             $comment->comment   = $inputs['comment'];
@@ -99,11 +99,12 @@ class CommentController extends BaseController {
                 $comment->addTagOrCreateNew($tag);
 
             $post->comments()->save($comment);
-            $comment->updateComment(1);
+            //autoapproval of comment
+            //$comment->updateComment(1);
             /* redirect back to the form portion of the page */
             return Redirect::to(URL::previous().'#reply')
-            //->with('success','Comment has been submitted and waiting for approval!');
-            ->with('success',trans('messages.CHBS') );
+            ->with('success','Comment has been submitted and waiting for approval!');
+            //->with('success',trans('messages.CHBS') );
         }
         else
         {
@@ -131,7 +132,7 @@ class CommentController extends BaseController {
         {
             $comment = new Comment;
             //uncomment the string below to use comment checking by administrator 
-            //$comment->approved = 0;//'no';
+            $comment->approved = 0;//'no';
             $comment->commenter = '';
             $comment->email     = '';
             $comment->user_id   = $inputs['user_id'];
@@ -155,11 +156,12 @@ class CommentController extends BaseController {
                 $comment->addTagOrCreateNew($tag, $inputs['user_id']);
 
             $post->comments()->save($comment);
-            $comment->updateComment(1);
+            //  autoaproval of comment
+            //$comment->updateComment(1);
             /* redirect back to the form portion of the page */
             return Redirect::to(URL::previous().'#reply')
-            //->with('success','Comment has been submitted and waiting for approval!');
-            ->with('success',trans('messages.CHBS'));
+            ->with('success','Comment has been submitted and waiting for approval!');
+            //->with('success',trans('messages.CHBS'));
         }
         else
         {
@@ -189,7 +191,7 @@ class CommentController extends BaseController {
         {
             $comment = new Comment;
             //uncomment the string below to use comment checking by administrator 
-            //$comment->approved = 0;//'no';            
+            $comment->approved = 0;//'no';            
             $comment->commenter = $inputs['commenter'];
             $comment->email     = $inputs['email'];
             $comment->comment   = $inputs['comment'];
@@ -211,13 +213,13 @@ class CommentController extends BaseController {
 
             if ($tag != 'default')
                 $comment->addTagOrCreateNew($tag);
-
-            $comment->approved = 1;
+            // autoapproval of comment 
+            //$comment->approved = 1;
             $headComment->commentsOnHeadComment()->save($comment);
             /* redirect back to the form portion of the page */
             return Redirect::to(URL::previous().'#reply')
-            //->with('success','Comment has been submitted and waiting for approval!');
-            ->with('success',trans('messages.CHBS'));
+            ->with('success','Comment has been submitted and waiting for approval!');
+            //->with('success',trans('messages.CHBS'));
         }
         else
         {
@@ -245,7 +247,7 @@ class CommentController extends BaseController {
         {
             $comment = new Comment;
             //uncomment the string below to use comment checking by administrator 
-            //$comment->approved = 0;//'no';
+            $comment->approved = 0;//'no';
             $comment->commenter = '';
             $comment->email = '';
             $comment->user_id = $inputs['user_id'];
@@ -267,13 +269,13 @@ class CommentController extends BaseController {
 
             if ($tag != 'default')
                 $comment->addTagOrCreateNew($tag,$inputs['user_id']);
-
-            $comment->approved = 1;
+            // autoaproval of comment
+            // $comment->approved = 1;
             $headComment->commentsOnHeadComment()->save($comment);
             /* redirect back to the form portion of the page */
             return Redirect::to(URL::previous().'#reply')
-            //->with('success','Comment has been submitted and waiting for approval!');
-            ->with('success',trans('messages.CHBS'));
+            ->with('success','Comment has been submitted and waiting for approval!');
+            //->with('success',trans('messages.CHBS'));
         }
         else
         {
